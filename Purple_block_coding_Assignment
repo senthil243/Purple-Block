@@ -2,10 +2,20 @@ Question:
 if this a list of prices [5,2,1,6,9,7] and you have to create a function which will give me the best buy price and the best sell prices (1 and 9) to maximise my profit ?
 Answer:
 def best_buy_sell(prices):
-    buy = min(prices)
-    sell = max(prices[prices.index(buy):])
-    return buy,sell
-prices = [5,2,1,6,9,7]
-buy,sell = best_buy_sell(prices)
-print("Best_Buy_Price:",buy)
-print("Best_Sell_Price:",sell)
+    min_price = float('inf')
+    max_profit = 0
+    buy_price = sell_price = 0
+    for price in prices:
+        if price < min_price:
+            min_price = price 
+        if price - min_price > max_profit:
+            max_profit = price - min_price
+            buy_price = min_price  
+            sell_price = price  
+    return buy_price, sell_price
+prices = [5, 2, 1, 6, 9, 7]
+buy, sell = best_buy_sell(prices)
+print("Best Buy Price:", buy) 
+print("Best Sell Price:", sell)  
+
+
